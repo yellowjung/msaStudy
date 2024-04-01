@@ -46,5 +46,7 @@ management:
       exposure:
         include: refresh, health, beans, busrefresh
 
-
+logging:
+  level:
+    com.example.userservice.client: DEBUG
 #  secret: 7JWI64WV7ZWY7IS47JqUIOyggOuKlCDsp4DquIggand0IOqzteu2gOykkeyeheuLiOuLpA==
