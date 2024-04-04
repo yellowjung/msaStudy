@@ -7,6 +7,7 @@ import com.example.orderservice.messagequeue.OrderProducer;
 import com.example.orderservice.service.OrderService;
 import com.example.orderservice.vo.RequestOrder;
 import com.example.orderservice.vo.ResponseOrder;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Slf4j
 @RestController
 @RequestMapping("/order-service")
 public class OrderController {
@@ -64,11 +66,13 @@ public class OrderController {
 //        ResponseOrder responseUser = mapper.map(orderDto, ResponseOrder.class);
 
 //        responseUser = mapper.map(orderDto, ResponseOrder.class);
+        log.info("After added orders data");
         return ResponseEntity.status(HttpStatus.CREATED).body(responseUser);
     }
 
     @GetMapping("/{userId}/orders")
     public ResponseEntity<List<ResponseOrder>> getOrder(@PathVariable("userId") String userId){
+        log.info("Before retrive orders data");
         Iterable<OrderEntity> orderList = orderService.getOrdersByUserId(userId);
 
         List<ResponseOrder> result = new ArrayList<>();

@@ -28,6 +28,7 @@ spring:
   sql:
     init:
       mode: always
+
 eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
@@ -41,6 +42,21 @@ eureka:
 
 greeting:
   message: Welcome to the Simple E-commerce.
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+    propagation:
+      consume: B3
+      produce: B3_MULTI
+  zipkin:
+    tracing:
+      endpoint: "http://172.19.152.150:9411/api/v2/spans"
+  endpoints:
+    web:
+      exposure:
+        include: health, httptrace, info, metrics, prometheus
 
 logging:
   level:
